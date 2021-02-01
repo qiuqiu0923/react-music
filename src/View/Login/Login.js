@@ -38,7 +38,7 @@ class Login extends  React.Component{
 			return false;
 		}
 		http.get("/login",{params:{email:this.state.user,password:this.state.pwd}}).then(res=>{
-			console.log(res);
+			// console.log(res);
 			if(res.data.code === 200){
 				success("登录成功！");
 				sessionStorage.setItem('isLogin',true);
@@ -47,7 +47,7 @@ class Login extends  React.Component{
 			};
 			if(res.data.code === 502){
 				error(res.data.message);
-			}
+			};
 		})
 	}
 	changeUser(e){
