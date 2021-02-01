@@ -6,6 +6,7 @@ import qq from '../../Assets/imgs/icon_qq.png';
 import wx from '../../Assets/imgs/icon_wx.png';
 import wb from '../../Assets/imgs/icon_wb.png';
 import { message } from 'antd';
+import http from '../../Assets/js/http.js'; //引入axios
 message.config({  //配置message弹框；
 	top:"50%",
 	duration: 1
@@ -13,13 +14,18 @@ message.config({  //配置message弹框；
 const error = (err) => {
   message.error(err);
 };
+const success = (err) => {
+  message.success(err);
+};
 class Login extends  React.Component{
+	
 	constructor(props) {
 	    super(props)
 		this.state = {
-			user:'',
-			pwd:''
+			user:'qqkk0923@126.com',
+			pwd:'qqkk@0923'
 		};
+		
 		this.handelLogin = this.handelLogin.bind(this);
 	}
 	handelLogin(){
@@ -31,6 +37,18 @@ class Login extends  React.Component{
 			error('密码不能为空！')
 			return false;
 		}
+		http.get("/login",{params:{email:this.state.user,password:this.state.pwd}}).then(res=>{
+			console.log(res);
+			if(res.data.code === 200){
+				success("登录成功！");
+				sessionStorage.setItem('isLogin',true);
+				sessionStorage.setItem('token',res.data.token);
+				window.location.reload();
+			};
+			if(res.data.code === 502){
+				error(res.data.message);
+			}
+		})
 	}
 	changeUser(e){
 		this.setState({
@@ -53,7 +71,7 @@ class Login extends  React.Component{
 					<input type="text" className="user" placeholder="请输入账号" onChange={this.changeUser.bind(this)} value={this.state.user}/>
 				</div>
 				<div className="in_box">
-					<input type="text" className="pwd" placeholder="请输入密码" onChange={this.changePwd.bind(this)} value={this.state.pwd}/>
+					<input type="password" className="pwd" placeholder="请输入密码" onChange={this.changePwd.bind(this)} value={this.state.pwd}/>
 				</div>
 				<button className="login_box" onClick={this.handelLogin}>登录</button>
 				<div className="otherMtd">
