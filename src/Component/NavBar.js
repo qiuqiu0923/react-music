@@ -1,8 +1,9 @@
 import React from 'react';
 import {NavLink,Switch,Route, BrowserRouter as Router} from 'react-router-dom';
-import About from '../View/About/About.js';
-import Mine from '../View/Mine/Mine.js';
-import Home from '../View/Home/Home.js';
+import About from '../View/About/About.js'; //关于模块
+import Mine from '../View/Mine/Mine.js'; //我的模块
+import Home from '../View/Home/Home.js'; //home模块
+import Mv from '../View/Mv/Mv.js'; //mv 模块
 import '../Assets/css/navBar.css';// import css
 let active_style={
 	color: 'red'
@@ -23,6 +24,9 @@ class NavBar extends React.Component{
 					  <Route  exact path="/layout/mine">
 						<Mine />
 					  </Route>
+					  <Route  exact path="/layout/mv">
+					  	<Mv />
+					  </Route>
 					</Switch>
 				</div>
 				<ul className="nav_bar">
@@ -36,6 +40,12 @@ class NavBar extends React.Component{
 						<NavLink activeStyle={active_style}  to="/layout/about">
 							<span className="iconfont">&#xe620;</span>
 							<span className="title">播客</span>
+						</NavLink>
+					</li>
+					<li>
+						<NavLink activeStyle={active_style}  to="/layout/mv">
+							<span className="iconfont icon-yinle3"></span>
+							<span className="title">MV</span>
 						</NavLink>
 					</li>
 					<li>
