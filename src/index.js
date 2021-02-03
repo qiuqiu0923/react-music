@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './Assets/font/iconfont.css';  //引入iconfont
 import './Assets/js/rem.js';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

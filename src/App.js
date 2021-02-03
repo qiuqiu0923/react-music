@@ -12,7 +12,7 @@ function App(){
 				{
 					router.map((item, key) => {  //根据具体配置路由文件遍历生成Router；
 						return(
-							<Route key={key} path={item.path} exact render={  //利用render方法，判断是否登录跳转至对应组件；根据实际业务修改；
+							<Route key={key} path={item.path} render={  //利用render方法，判断是否登录跳转至对应组件；根据实际业务修改；
 								props => (
 									!item.auth ? (<item.component {...props} />) : (isLogin ? <item.component {...props}/>  : <Login/> )
 								)

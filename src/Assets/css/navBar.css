@@ -1,0 +1,38 @@
+.render_container{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.render_box{
+	flex:1;
+}
+.nav_bar{
+	/* position: fixed; */
+	/* bottom: 0px; */
+	width: 100%;
+	height: .9rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding:0px .25rem;
+	box-sizing: border-box;
+	margin: 0px;
+	list-style: none;
+	border-top: 1px solid #eee;
+}
+.nav_bar li a{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	/* justify-content: center; */
+}
+.nav_bar li a .title{
+	font-size: 14px;
+	height: 14px;
+	display: block;
+	line-height: 14px;
+}
+.active{
+	color: #ccc;
+}
