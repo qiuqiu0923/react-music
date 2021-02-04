@@ -2,6 +2,19 @@
 	height: 100%;
 	width: 100%;
 }
+.home_container{
+	width: 100%;
+	background: linear-gradient(to right ,'#fe4a6f','#fe805a');
+}
+.home_wrapper .title{
+	width: 100%;
+	height: .7rem;
+	line-height: .7rem;
+	font-size: .3rem;
+	text-align: center;
+	margin-bottom: 0px;
+	color: #fff;
+}
 .home_wrapper .header{
 	height: 1rem;
 	width: 100%;
@@ -15,13 +28,15 @@
 	width: 88%;
 	height: .6rem;
 	border-radius:.3rem;
+	border: 1px solid #0077AA;
+	outline: none;
 }
 .home_wrapper .header .icon_right{
 	height: .5rem;
 	width: .5rem;
 	display: block;
 	border-radius: 50%;
-	border: 1px solid #eee;
+	border: 1px solid #0077AA;
 	padding: .2rem;
 	box-sizing: border-box;
 	display: flex;
@@ -33,5 +48,4 @@
 	height: 3rem;
 	background: #ccc;
 	margin: 0 auto;
-	display: none;
 }

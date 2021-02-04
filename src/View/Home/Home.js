@@ -13,23 +13,26 @@ class Home extends React.Component{
 	render(){
 		return( 
 		<div className="home_wrapper">
-			<header className="header">
-				<input type="text" className="searchBox"/>
-				<span className="icon_right"><i className="iconfont icon-yiliao"></i></span>
-			</header>
-			<section id="banner" className="swiper-container">
-				<div className="swiper-wrapper">
-				  {
-					  this.state.banner.map( (item,index) => 
-					  <div key={index} className="swiper-slide">
-						<img src={item.pic} key={index} style={{
-							width:'100%',
-							height:'3rem'
-						}}/>
-					  </div> )
-				  }
-			  </div>
-			</section>
+			<div className="home_container">
+				<h3 className="title">Q-Music</h3>
+				<header className="header">
+					<input type="text" className="searchBox"/>
+					<span className="icon_right"><i className="iconfont icon-yiliao"></i></span>
+				</header>
+				<section id="banner" className="swiper-container">
+					<div className="swiper-wrapper">
+					  {
+						  this.state.banner.map( (item,index) => 
+						  <div key={index} className="swiper-slide">
+							<img src={item.pic} key={index} style={{
+								width:'100%',
+								height:'3rem'
+							}}/>
+						  </div> )
+					  }
+				  </div>
+				</section>
+			</div>
 			<section id="circle_list">
 			</section>
 		</div> 
