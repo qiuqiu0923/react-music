@@ -6,7 +6,9 @@ import qq from '../../Assets/imgs/icon_qq.png';
 import wx from '../../Assets/imgs/icon_wx.png';
 import wb from '../../Assets/imgs/icon_wb.png';
 import { message } from 'antd';
+import {withRouter} from 'react-router-dom';
 import http from '../../Assets/js/http.js'; //引入axios
+import store from '../../Redux/store.js';
 message.config({  //配置message弹框；
 	top:"50%",
 	duration: 1
@@ -18,14 +20,13 @@ const success = (err) => {
   message.success(err);
 };
 class Login extends  React.Component{
-	
 	constructor(props) {
 	    super(props)
+		console.log(123);
 		this.state = {
 			user:'qqkk0923@126.com',
 			pwd:'qqkk@0923'
 		};
-		
 		this.handelLogin = this.handelLogin.bind(this);
 	}
 	handelLogin(){
@@ -41,9 +42,11 @@ class Login extends  React.Component{
 			// console.log(res);
 			if(res.data.code === 200){
 				success("登录成功！");
-				sessionStorage.setItem('isLogin',true);
+				let action = { type: 'changeIsLogin' , value: true };  
 				sessionStorage.setItem('token',res.data.token);
-				window.location.reload();
+				store.dispatch(action);
+				this.props.history.push('/layout');
+				// window.location.reload();
 			};
 			if(res.data.code === 502){
 				error(res.data.message);
@@ -85,4 +88,4 @@ class Login extends  React.Component{
 	}
 	
 }
-export default Login;
+export default withRouter(Login);

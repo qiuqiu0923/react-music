@@ -1,14 +1,23 @@
 import React from 'react';
-import {NavLink,Switch,Route, BrowserRouter as Router} from 'react-router-dom';
+import {NavLink,Switch,Route, BrowserRouter as Router,Redirect,withRouter} from 'react-router-dom';
 import About from '../View/About/About.js'; //关于模块
 import Mine from '../View/Mine/Mine.js'; //我的模块
 import Home from '../View/Home/Home.js'; //home模块
 import Mv from '../View/Mv/Mv.js'; //mv 模块
 import '../Assets/css/navBar.css';// import css
+import store from '../Redux/store.js';
 let active_style={
 	color: 'red'
 };
 class NavBar extends React.Component{
+	constructor(props) {
+	    super(props);
+		let isLogin  = store.getState().isLogin;
+		console.log(isLogin)
+		if(!isLogin){
+			this.props.history.push('/login');
+		}
+	}
 	render(){
 		return(
 			<Router>
@@ -26,6 +35,9 @@ class NavBar extends React.Component{
 					  </Route>
 					  <Route  exact path="/layout/mv">
 					  	<Mv />
+					  </Route>
+					  <Route exact path="/layout">
+					  		<Redirect to="/layout/home" />
 					  </Route>
 					</Switch>
 				</div>
@@ -61,4 +73,4 @@ class NavBar extends React.Component{
 		)
 	}
 }
-export default NavBar;
+export default withRouter(NavBar);

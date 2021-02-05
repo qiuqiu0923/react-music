@@ -3,11 +3,14 @@ import './home.css';
 import Swiper from "swiper";  //引入swiper
 import 'swiper/swiper.min.css'; //引入swiper.css;
 import http from '../../Assets/js/http.js'; //引入http模块；
+import Audio from '../../Component/Audio.js'; // 播放组件
 class Home extends React.Component{
 	constructor(props) {
 	    super(props)
 		this.state = {
-			banner:[]
+			banner:[],
+			list_ball:[], //环形list
+			betterList:[], //精品歌单
 		};
 	}
 	render(){
@@ -24,21 +27,68 @@ class Home extends React.Component{
 					  {
 						  this.state.banner.map( (item,index) => 
 						  <div key={index} className="swiper-slide">
-							<img src={item.pic} key={index} style={{
+							<img src={item.pic} key={index} alt={item.name} style={{
 								width:'100%',
 								height:'3rem'
 							}}/>
 						  </div> )
 					  }
-				  </div>
+					</div>
 				</section>
 			</div>
 			<section id="circle_list">
+				<ul className="list_wrapper">
+					{
+						this.state.list_ball.map( (item,index) => 
+							<li key={index} dataid={item.id}>
+								<img key={index} src={item.iconUrl} alt={item.name}/>
+								<span>{item.name}</span>
+							</li>
+						)
+					}
+				</ul>
 			</section>
+			<h3 style={{textAlign:"center"}}>精品歌单</h3>,
+			<ul className="betterList">
+				{
+					this.state.betterList.map( (item,index) =>
+						<li key={index} dataid={item.id}>
+							<img key={index} src={item.coverImgUrl} alt={item.name}/>
+							<span>{item.name}</span>
+						</li>
+					)
+				}
+			</ul>
+			<Audio></Audio>
 		</div> 
 		)
 	}
 	componentDidMount(){
+		this.getBanner();
+		http.get('/homepage/dragon/ball').then(res=>{
+			if(res.data.code === 200){
+				this.setState({
+					list_ball:res.data.data
+				});
+			}
+		});
+		this.getPushSingList();
+	}
+	componentDidUpdate(prevProps,prevState){  //在这个生命周期里面判断属性，值 是否更新了；
+		// console.log(prevProps,prevState);
+	}
+	getPushSingList(){  //获取精品
+		// let timer = Date.now();
+		// /playlist/highquality/tags  //华/。。。。
+		http.get("/top/playlist?limit=12&order=new").then(res=>{
+			if(res.data.code === 200){
+				this.setState({
+					betterList:res.data.playlists
+				});
+			}
+		});
+	}
+	getBanner(){  //获取
 		http.get('/banner?type=1').then(res=>{
 			if(res.data.code === 200){
 				this.setState({
@@ -47,28 +97,14 @@ class Home extends React.Component{
 				this.renderBanner();
 			}
 		});
-		
-		http.get('/homepage/dragon/ball').then(res=>{
-			console.log(res)
-		})
 	}
 	renderBanner(){  //渲染轮播图
 		new Swiper ('.swiper-container', {
-		     // direction: 'vertical', // 垂直切换选项
+		     direction: 'vertical', // 垂直切换选项
 		    loop: true, // 循环模式选项
-		    slidesPerView:1.2,
-			spaceBetween: 5,
-			centeredSlides: true,
-			autoplay:true,
-		     // 如果需要分页器
-		    pagination: {
-		       el: '.swiper-pagination',
-		    },
-		     // 如果需要前进后退按钮
-		    navigation: {
-		       nextEl: '.swiper-button-next',
-		       prevEl: '.swiper-button-prev',
-		    },
+			autoplay: {
+				delay:1000
+			},
 		})
 	}
 }
