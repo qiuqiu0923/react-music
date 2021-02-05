@@ -34,11 +34,25 @@
       "unicode_decimal": 58937
     },
     {
+      "icon_id": "1371946",
+      "name": "列表",
+      "font_class": "liebiao",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
       "icon_id": "1473537",
       "name": "音乐",
       "font_class": "yinyue",
       "unicode": "e680",
       "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "2150385",
+      "name": "列表",
+      "font_class": "list_icon",
+      "unicode": "e670",
+      "unicode_decimal": 58992
     },
     {
       "icon_id": "3112575",
@@ -69,6 +83,13 @@
       "unicode_decimal": 59118
     },
     {
+      "icon_id": "4933224",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e6f6",
+      "unicode_decimal": 59126
+    },
+    {
       "icon_id": "6207817",
       "name": "音乐",
       "font_class": "ziyuanldpi",
@@ -88,6 +109,13 @@
       "font_class": "yinle2",
       "unicode": "e622",
       "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "13604121",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "e632",
+      "unicode_decimal": 58930
     },
     {
       "icon_id": "18030303",

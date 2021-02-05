@@ -13,7 +13,7 @@ class NavBar extends React.Component{
 	constructor(props) {
 	    super(props);
 		let isLogin  = store.getState().isLogin;
-		console.log(isLogin)
+		// console.log(isLogin)
 		if(!isLogin){
 			this.props.history.push('/login');
 		}

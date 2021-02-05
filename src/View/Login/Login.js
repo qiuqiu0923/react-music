@@ -44,6 +44,7 @@ class Login extends  React.Component{
 				success("登录成功！");
 				let action = { type: 'changeIsLogin' , value: true };  
 				sessionStorage.setItem('token',res.data.token);
+				sessionStorage.setItem('id',res.data.account.id);
 				store.dispatch(action);
 				this.props.history.push('/layout');
 				// window.location.reload();

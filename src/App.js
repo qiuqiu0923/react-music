@@ -1,6 +1,6 @@
 import React from 'react';
 // import router from './Router/router.js'; // 引入配置的router文件；
-import { BrowserRouter as Router , Route ,Switch ,useParams,Redirect} from 'react-router-dom';
+import { BrowserRouter as Router , Route ,Switch,Redirect} from 'react-router-dom';
 import Login from  "./View/Login/Login.js";  //引入登录页；
 import Layout from "./View/Layout/index.js"; //引入主页模块；
 // import store from "./Redux/store.js";
@@ -38,7 +38,6 @@ function App(){
 	// 	})
 	// }
 function Test(){
-	let {id} = useParams();
 	return(
 		<Layout/>
 	)
