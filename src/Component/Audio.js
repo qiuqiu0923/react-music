@@ -25,7 +25,7 @@ class Audio extends React.Component{
 		let playedList = store.getState().playedList;
 		this.setState({
 			playerCount:changeSong,
-			listMusic:JSON.parse(playedList)
+			listMusic:playedList.length>0 ? JSON.parse(playedList) : []
 		});
 		store.subscribe(function(){
 			let {changeSong,playedList } = store.getState();

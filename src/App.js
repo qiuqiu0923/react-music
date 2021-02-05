@@ -3,13 +3,14 @@ import React from 'react';
 import { BrowserRouter as Router , Route ,Switch,Redirect} from 'react-router-dom';
 import Login from  "./View/Login/Login.js";  //引入登录页；
 import Layout from "./View/Layout/index.js"; //引入主页模块；
-// import store from "./Redux/store.js";
+import store from "./Redux/store.js";
 import './App.css';
 function App(){
-	// let isLogin = store.getState().isLogin;  //是否已经登录 获取到token
+	let isLogin = store.getState().isLogin;  //是否已经登录 获取到token
 	return(
 		<Router>
 			<Switch>
+
 				<Route exact path="/">
 					<Redirect to="/layout/home" />
 				</Route>
