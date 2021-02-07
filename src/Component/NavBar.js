@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink,Switch,Route, BrowserRouter as Router,Redirect,withRouter} from 'react-router-dom';
+import {NavLink,Switch,Route, HashRouter as Router,Redirect,withRouter} from 'react-router-dom';
 import About from '../View/About/About.js'; //关于模块
 import Mine from '../View/Mine/Mine.js'; //我的模块
 import Home from '../View/Home/Home.js'; //home模块
@@ -13,7 +13,6 @@ class NavBar extends React.Component{
 	constructor(props) {
 	    super(props);
 		let isLogin  = store.getState().isLogin;
-		// console.log(isLogin)
 		if(!isLogin){
 			this.props.history.push('/login');
 		}
@@ -37,7 +36,7 @@ class NavBar extends React.Component{
 					  	<Mv />
 					  </Route>
 					  <Route exact path="/layout">
-					  		<Redirect to="/layout/home" />
+					  		<Redirect to="/layout/home"/>
 					  </Route>
 					</Switch>
 				</div>

@@ -24,18 +24,10 @@
 	font-size: .2rem;
 	color: #000;
 	margin: 0 .2rem 0 .2rem;
-	max-width: 2rem;
-	display: inline-block;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 #audio_wrapper #audio1 .name{
 	font-size: .16rem;
 	color: #000;
-	max-width: 2rem;
-	display: inline-block;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 #listMusic{
 	height: 8rem;
