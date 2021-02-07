@@ -22,7 +22,6 @@ const success = (err) => {
 class Login extends  React.Component{
 	constructor(props) {
 	    super(props)
-		console.log(123);
 		this.state = {
 			user:'qqkk0923@126.com',
 			pwd:'qqkk@0923'

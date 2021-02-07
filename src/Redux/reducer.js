@@ -2,6 +2,9 @@ let initStore = {
 	isLogin:sessionStorage.getItem('isLogin') || false , //记录是否登记
 	playedList:sessionStorage.getItem("playedList") || [], //播放记录；
 	changeSong:0, //记录播放了几次
+	bannerList:[], //banner
+	homeListBall:[], //圆圈
+	betterList:[], //精品推荐
 };
 const reducer = ( state = initStore , action ) => {
 	switch(action.type){

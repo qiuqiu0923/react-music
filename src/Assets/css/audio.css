@@ -18,6 +18,11 @@
 #audio1 .section1{
 	display: flex;
 	align-items: center;
+	flex: 1;
+}
+#audio1 .section2{
+	padding-left: .2rem;
+	box-sizing: border-box;
 }
 #audio_wrapper #audio1 .titles{
 	font-weight: bold;

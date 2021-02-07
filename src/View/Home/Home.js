@@ -3,12 +3,12 @@ import './home.css';
 import Swiper, { Autoplay } from "swiper";  //引入swiper
 import 'swiper/swiper.min.css'; //引入swiper.css;
 import http from '../../Assets/js/http.js'; //引入http模块；
-import Audio from '../../Component/Audio.js'; // 播放组件
 import store from "../../Redux/store.js";
 Swiper.use([Autoplay]);
 class Home extends React.Component{
 	constructor(props) {
 	    super(props)
+		// let stores = store.getState();
 		this.state = {
 			banner:[],
 			list_ball:[], //环形list
@@ -79,12 +79,23 @@ class Home extends React.Component{
 					)
 				}
 			</ul>
-			<Audio></Audio>
 		</div> 
 		)
 	}
 	componentDidMount(){
-		this.getBanner();
+		this.renderHomePage();
+	}
+	componentWillUnmount() {
+		this.setState = (state, callback) => {
+		  return
+	  }
+	}
+	async renderHomePage(){
+		let getBanner = await this.getBanner();
+		let getPushSingList = await this.getPushSingList();
+		let getHomeListBall = await this.getHomeListBall();
+	}
+	getHomeListBall(){
 		http.get('/homepage/dragon/ball').then(res=>{
 			if(res.data.code === 200){
 				this.setState({
@@ -92,11 +103,6 @@ class Home extends React.Component{
 				});
 			}
 		});
-		this.getPushSingList();
-		// http.get("/user/playlist?uid=3933980728").then(res=>{console.log(res)});
-	}
-	componentDidUpdate(prevProps,prevState){  //在这个生命周期里面判断属性，值 是否更新了；
-		// console.log(prevProps,prevState);
 	}
 	getPushSingList(){  //获取精品
 		// let timer = Date.now();

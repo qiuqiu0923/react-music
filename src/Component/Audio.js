@@ -25,8 +25,14 @@ class Audio extends React.Component{
 		let playedList = store.getState().playedList;
 		this.setState({
 			playerCount:changeSong,
-			listMusic:playedList.length>0 ? JSON.parse(playedList) : []
+			listMusic:playedList.length>0 ? JSON.parse(playedList) : [],
+			tmpListen:playedList.length>0 ? JSON.parse(playedList)[0] : {},
+			singName:playedList.length>0 ? JSON.parse(playedList)[0].name : ""
 		});
+		if(playedList.length>0){
+			let players = document.getElementById('players');
+			players.setAttribute('src',JSON.parse(playedList)[0].url);
+		}
 		store.subscribe(function(){
 			let {changeSong,playedList } = store.getState();
 			if(slef.state.playerCount !== changeSong){
@@ -39,10 +45,10 @@ class Audio extends React.Component{
 				});
 				let players = document.getElementById('players');
 				players.setAttribute('src',playedList[0].url);
+				this.state.playing ? players.play() : players.pause();
 			}
 			
 		})
-		console.log( this.state.listMusic )
 	}
 	render(){
 		return(
@@ -57,7 +63,7 @@ class Audio extends React.Component{
 						<span className="titles">{this.state.singer}</span>
 						<span className="name">{this.state.singName}</span>
 					</section>
-					<section>
+					<section className="section2">
 						{<i onClick={this.handelChangeStatus} className={this.state.playing ? "iconfont icon-zanting" : "iconfont icon-bofang"} style={{marginRight:".2rem"}}></i>}
 						<i className="iconfont icon-liebiao" onClick={this.handelChangeListShow}></i>
 					</section>
@@ -82,7 +88,7 @@ class Audio extends React.Component{
 			playing:!this.state.playing
 		});
 		let players = document.getElementById('players');
-		players.paused ? players.play() : players.pause();
+		this.state.playing ? players.play() : players.pause();
 	}
 	handelChangeListShow(){
 		this.setState({
@@ -103,6 +109,11 @@ class Audio extends React.Component{
 			});
 			let players = document.getElementById('players');
 			players.setAttribute('src',tmpListen[0].url);
+			players.play();
+			// console.log( players.duration )
+			// setInterval(()=>{
+			// 	console.log(players.duration, players.currentTime )
+			// },1000)
 		}
 	}
 }

@@ -6,6 +6,7 @@ import Home from '../View/Home/Home.js'; //home模块
 import Mv from '../View/Mv/Mv.js'; //mv 模块
 import '../Assets/css/navBar.css';// import css
 import store from '../Redux/store.js';
+import Audio from './Audio.js'; // 播放组件
 let active_style={
 	color: 'red'
 };
@@ -16,11 +17,17 @@ class NavBar extends React.Component{
 		if(!isLogin){
 			this.props.history.push('/login');
 		}
+		this.state={
+			showAudio:true
+		}
 	}
 	render(){
 		return(
 			<Router>
 			<div className="render_container">
+				{	<Audio/>
+					//this.props.match.url.indexOf('/home') >= 0 ? <div style={{display:"block"}}>	<Audio/></div> : <div style={{display:"none"}}><Audio/></div>
+				}
 				<div className="render_box">
 					<Switch>
 					  <Route exact path="/layout/home">
