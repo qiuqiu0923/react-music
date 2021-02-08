@@ -47,7 +47,7 @@ class Home extends React.Component{
 					  {
 						  this.state.banner.map( (item,index) => 
 						  <div key={index} className="swiper-slide">
-							<img src={item.pic} key={index} alt={item.name} style={{
+							<img src={item.pic} key={index} alt={item.typeTitle} style={{
 								width:'100%',
 								height:'3rem'
 							}}/>

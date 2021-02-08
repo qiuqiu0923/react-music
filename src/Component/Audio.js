@@ -2,6 +2,7 @@ import React from 'react';
 import "../Assets/css/audio.css";
 import icon from "../Assets/imgs/icon.png"; 
 import store from "../Redux/store.js";
+import http from '../Assets/js/http.js'; //引入http模块；
 class Audio extends React.Component{
 	constructor(props) {
 	    super(props)
@@ -32,6 +33,10 @@ class Audio extends React.Component{
 		if(playedList.length>0){
 			let players = document.getElementById('players');
 			players.setAttribute('src',JSON.parse(playedList)[0].url);
+			players.addEventListener('play',function(){
+				// console.log('play');
+				slef.getLyric(slef.state.tmpListen.id);
+			});
 		}
 		store.subscribe(function(){
 			let {changeSong,playedList } = store.getState();
@@ -47,7 +52,6 @@ class Audio extends React.Component{
 				players.setAttribute('src',playedList[0].url);
 				this.state.playing ? players.play() : players.pause();
 			}
-			
 		})
 	}
 	render(){
@@ -80,6 +84,13 @@ class Audio extends React.Component{
 			</section>
 		)
 	}
+	getLyric(id){
+		http.get("/lyric?id="+id).then(res=>{
+			if(res.data.code === 200){
+				console.log(res.data.lrc.lyric)
+			}
+		});
+	}
 	handelChangeStatus(){
 		if(this.state.tmpListen.url === undefined){
 			return false;
@@ -100,7 +111,7 @@ class Audio extends React.Component{
 		let listMusic = this.state.listMusic;
 		let tmpListen =listMusic.filter(item => item.id === id);
 		if(tmpListen[0]){
-			console.log( tmpListen[0] )
+			// console.log( tmpListen[0] )
 			this.setState({
 				playing:true,
 				showList:false,
@@ -111,9 +122,9 @@ class Audio extends React.Component{
 			players.setAttribute('src',tmpListen[0].url);
 			players.play();
 			// console.log( players.duration )
-			// setInterval(()=>{
-			// 	console.log(players.duration, players.currentTime )
-			// },1000)
+			setInterval(()=>{
+				console.log(players.duration, players.currentTime )
+			},1000)
 		}
 	}
 }
